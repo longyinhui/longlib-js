@@ -1,0 +1,51 @@
+dataGridDesign = {
+    attributes: {
+        height: 550,
+        width: "1200px"
+    },
+    columns: [
+        { name: 'seq', caption: '#', width: '30px', type: 'lineno' },
+        { name: 'name', caption: 'Name', width: '100px', type: 'text' },
+        { name: 'check', caption: '', width: '50px', type: 'checkbox', selectall: 1 },
+        { name: 'radio', caption: '', width: '50px', type: 'radio' },
+        {
+            name: 'address', caption: 'Address', width: '100px', type: 'select', options: [
+                {text: 'TianHe1', value: 'tianhe'},
+                {text: 'YueXiu', value: 'yuexiu'},
+                {text: 'HaiZhu', value: 'haizhu'},
+                {text: 'BaiYun', value: 'baiyun'}
+            ]
+        },
+        { name: 'button', caption: 'TButton', width: '160px', type: 'button', onclick: 'bClick'},
+        { name: 'age', caption: 'Age', width: '30px', type: 'number', step: 0.1, max: 2},
+        { name: 'date', caption: 'Date', width: '150px', type: 'date'},
+        { name: 'link1', caption: 'Link1', width: '100px', type: 'label' },
+        { name: 'link', caption: 'Link', width: '100px', type: 'link', onclick: 'bClick', alias: 'Click Here' }
+    ]
+};
+dataGridRowsTemplate = [
+    { name: 'Longyh', description: 'Long Yinhui', status: 'OKL', age: 0, date: '1911-10-10', address: 'yuexiu', address1: 'yuexiu', check: true, img: 'img/test.png', link: 'http://t.cn', link1: 'http://www.google.com' },
+    { name: 'husa', description: 'Samson', status: 'OKH', age: 110, date: '2013-12-10', address: 'tianhe', address1: 'yuexiu', radio: true, img: 'img/test1.jpg', link: 'http://t.cn', link1: 'http://qq.com' },
+    { name: 'grma', description: 'Lawrence', status: 'OKG', age: 200, date: '1949-10-01', address: 'baiyun', address1: 'tianhe', link: 'http://t.cn', link1: 'http://qq.com' }
+]
+dataGridRows.length = 9000
+
+Test Result:
+        2.0Load    2.0Render    3.0Load    3.0Render
+        -------------------------------------------------
+1.22    1146        10203       1287        4948(3.0β with tr(with :even) class, and span inside td - 5000±200)
+        1184        10241       1245        5197
+        1037        9801        1209        4783
+        1218        9848
+        1108        10043
+1.24    1136        10079       1172        3827(3.0β with tr class, remove span in td - 3800±100)
+                                1216        3884
+1.25                            1131        3367(3.0β without tr class, remove span in th - 3300±200)
+                                1245        3397
+
+(update chrome from 38 to 40 [slower in javascript while faster in css??])
+2.7     3978        17566       3390        3406(3.0β without s class)
+        3517        13483       3320        3331
+        3479        14172       3215        3229
+        3602        14331       3478        3491(3.0β with s class)
+        3028        13258       3035        3045

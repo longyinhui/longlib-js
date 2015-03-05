@@ -1,0 +1,69 @@
+/*public*/
+input[type='submit'],
+input[type='button'] {
+    margin-left: 2px;
+    margin-right: 2px;
+    padding:1px 6px;
+}
+/*public*/
+
+/*title*/
+.pTitle {
+    margin: -1px -1px 0 -11px!important;
+}
+
+.pTitleTriangle{
+    margin: 0 0 2px -11px!important;
+}
+/*title*/
+
+/*datagrid
+.datagridhead-div,
+.datagridhead-div-y{
+    top: 2px!important;
+}*/
+/*datagrid*/
+
+/*datepicker*/
+img.picker{
+    margin-top: 3px;
+    margin-bottom: 4px;
+}
+.bbit-dp{
+    border:#ddd 1px solid;
+}
+/*datepicker*/
+
+/*Dialog*/
+.dialog{
+    top:10px!important;
+    left:10px!important;
+    position: fixed!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+}
+
+.dialog-effect .dialog-frame{
+    filter:alpha(opacity=0);
+}
+
+.show.dialog-effect .dialog-frame{
+    filter:alpha(opacity=100);
+}
+
+.dialog-mask{
+    filter:alpha(opacity=50)!important;
+}
+
+.dialog-head-close{
+    top: 0px!important;
+}
+
+.dialog-buttons input[type='button'].pButton{
+    filter:alpha(opacity=80);
+}
+
+.dialog-buttons input[type='button'].pButton:hover{
+    filter:alpha(opacity=100);
+}
+/*Dialog*/

@@ -1,0 +1,389 @@
+/*datagrid*/
+table.datagrid {
+    width: 100%;
+    margin-bottom: 0px;
+    table-layout: fixed;
+    clear: both;
+    /*no borer
+    border-bottom: 1px solid #dddddd;
+    border-top: 1px solid #000000;
+    */
+    border-collapse: separate;
+    *border-collapse: collapse;
+    border-left: 0;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    /*font12px*/
+    font-size:12px;
+}
+
+table.datagrid-head {
+    border-bottom: 0!important;
+}
+
+.datagrid thead .sorting,
+.datagrid thead .sorting_asc,
+.datagrid thead .sorting_desc,
+.datagrid thead .sorting_asc_disabled,
+.datagrid thead .sorting_desc_disabled {
+    cursor: pointer;
+    *cursor: hand;
+}
+
+.datagrid thead .sorting span{ background: #f6f5f5 url('image/sort_both.png') no-repeat center left; padding-left: 12px; /*width: calc(100% - 9px);*/}
+.datagrid thead .sorting_asc span{ background: #f6f5f5 url('image/sort_asc.png') no-repeat center left; padding-left: 12px; /*width: calc(100% - 9px);*/}
+.datagrid thead .sorting_desc span{ background: #f6f5f5 url('image/sort_desc.png') no-repeat center left; padding-left: 12px; /*width: calc(100% - 9px);*/}
+
+.datagrid thead tr{
+    position: relative;
+    top:0px;
+}
+
+.datagrid tbody tr{
+    -webkit-transition: opacity ease-in-out .5s;
+    transition: opacity ease-in-out .5s;
+}
+
+.datagrid tbody .focus > td{
+    /*color: #de0084;*/
+    background-color: #FDEAF7 !important;
+}
+
+.datagrid tr .control{
+    margin: 0px !important;
+    padding: 0px !important;
+    text-align: center;
+}
+
+.datagrid tr .content{
+    margin: 0px !important;
+    padding: 6px 0px 0px 5px !important;
+}
+
+.datagrid tr .waiting{
+    background:url('image/wait.gif') no-repeat center center;
+    background-size:20px 20px;
+}
+
+.datagrid td {
+    padding: 4px 2px 0px 5px;
+    /*font12px*/
+    line-height: 17px;/*font-line: 12-17; 13-18*/
+    text-align: left;
+    vertical-align: top;
+}
+
+.datagrid th {
+    padding: 0px;
+    background-color: #f6f5f5;
+    color: #888888;
+    line-height: 26px;
+    border-bottom: 1px solid #e4e4e4;
+    position: relative;
+    top:0px;
+
+}
+
+.datagrid th:active {
+    outline: none;
+}
+
+.datagrid th span{
+    padding: 4px 2px 0px 5px;
+    font-weight: normal;
+    vertical-align: bottom;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
+    /*width: calc(100% - 3px);*/
+}
+
+.datagrid td{
+    border-left: 1px solid #ffffff;
+}
+
+.datagrid tbody tr:first-child td{
+    border-top: 1px solid #ffffff;
+}
+
+.datagrid tbody tr:last-child td{
+    border-bottom: 1px solid #dddddd;
+}
+
+.datagridbody-div tbody tr:last-child td,
+.datagridbody-div-s tbody tr:last-child td{
+    border-bottom: 1px solid #ffffff!important;
+}
+
+.datagrid tbody > tr:nth-child(even) > td,
+.datagrid tbody > tr:nth-child(even) > th {
+    background-color: #f5f5f5;
+}
+
+/*
+.datagrid tbody > tr > td:first-child{
+    border-left: 0px;
+}
+*/
+
+.datagrid input{
+    margin-right: 0px;
+    width: -moz-calc(100% - 4px);
+    width: -webkit-calc(100% - 4px);
+    width: calc(100% - 4px);
+    height:22px;
+    /*background-color: transparent;*/
+    border: 1px solid #FF98D4;
+    /*outline-width:medium;*/
+    outline-style:none;
+    outline-color:invert;
+    -webkit-box-shadow: 0px 0px 6px #ff5fbd/*#ed008c*/;
+    -moz-box-shadow: 0px 0px 5px #ff5fbd;
+    box-shadow: 0px 0px 5px #ff5fbd;
+    padding-left: 5px;
+    margin-left: -1px;
+    /*font12px*/
+    font-size: 12px;
+    padding-top: 0px;
+}
+
+input[type="text"],input[type="password"]{
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.datagrid input[type='checkbox'],
+.datagrid input[type='radio']{
+    margin: 1px 0px 0px 5px;
+    border-width:0px;
+    height:14px;
+    width: 14px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+/*
+.datagrid input[type='checkbox']:focus,
+.datagrid input[type='radio']:focus{
+    -webkit-box-shadow: 0px 0px 6px #ff5fbd;
+    -moz-box-shadow: 0px 0px 5px #ff5fbd;
+    box-shadow: 0px 0px 5px #ff5fbd;
+}*/
+
+.datagrid input[type='image']{
+    margin: 0px 0px 0px 0px;
+    width: 14px;
+    height:14px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.datagrid input[type='button']{
+    margin: 1px 2px 0px 2px;
+    height:24px;
+    border-width:0px;
+    background-color: rgba(211,41,129,0.8);
+    font-weight: normal;
+    color: #ffffff;
+    text-decoration: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.datagrid input[type='button']:hover{
+    background-color: rgb(211,41,129);
+}
+
+.datagrid input[type='button']:focus{
+    -webkit-box-shadow: 0px 0px 6px #ff5fbd;
+    -moz-box-shadow: 0px 0px 5px #ff5fbd;
+    box-shadow: 0px 0px 5px #ff5fbd;
+    opacity: 0.8;
+}
+
+
+.datagrid select{
+    height: 24px;
+    outline: none;
+    /*border: #ff5fbd solid 1px;*/
+    width: 100%;
+    position: relative;
+    padding: 2px 2px 2px 0px;
+    margin: 0px;
+    z-index: 3;
+    /*font12px*/
+    font-size:12px;
+}
+
+.datagrid textarea{
+    width: -moz-calc(100% - 5px);
+    width: calc(100% - 5px);
+    width: -webkit-calc(100% - 7px);
+    height: 52px;
+    border-width: 0px;
+    resize: vertical;
+    margin-bottom: -moz-calc(0px - 2px);
+    margin-bottom: -webkit-calc(0px - 4px);
+    -webkit-box-shadow: 0px 0px 6px #ff5fbd;
+    -moz-box-shadow: 0px 0px 5px #ff5fbd;
+    box-shadow: 0px 0px 5px #ff5fbd;
+    padding-left: 5px;
+
+    outline-width: medium;
+    outline-style: none;
+    outline-color: invert;
+    overflow: hidden;
+    /*font12px*/
+    font-size:12px;
+}
+
+.datagrid textarea:focus{
+    -webkit-box-shadow: 0px 0px 6px #ff5fbd;
+    -moz-box-shadow: 0px 0px 5px #ff5fbd;
+    box-shadow: 0px 0px 5px #ff5fbd;
+}
+
+.datagrid a,
+.datagrid span{
+    white-space:nowrap;
+    display:inline-block;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    width:100%;
+    /*word-break:break-all*/
+    /*height:14px;*/
+    /*margin-top: 2px;*/
+}
+
+.datagrid span.progress{height:17px;text-overflow:clip;white-space:nowrap;}
+.datagrid span.progress-empty{background-color:#ff0000;color:#fff;display:inline-block;}
+.datagrid span.progress-warning{background-color:#ffe000;color:#000;display:inline-block;}
+.datagrid span.progress-enough{background-color:#00a800;color:#fff;display:inline-block;}
+.datagrid span.progress-rest{background-color:#d5d5d5;display:inline-block;}
+.datagrid span.progress-title{width:100%;position:relative;left:-100%;text-align:center;text-shadow:0px 0px 10px #fff;}
+
+.datagridroot-div{
+    margin: 3px auto -31px auto;
+}
+
+.datagridhead-div{
+    position: relative;
+    top: 1px;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.datagridhead-div-y{
+    position: relative;
+    top: 1px;
+    z-index: 2;
+    overflow: hidden;
+    margin-right: 16px;
+}
+
+.datagridbody-div{
+    position: relative;
+    top: -30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*box-shadow: 0px 0px 12px #888888;*/
+    background-color: #ffffff;
+    border: 1px solid #b7b8b8;
+    margin: -1px -1px;
+}
+
+.datagridbody-div-y{
+    position: relative;
+    top: -30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*box-shadow: 0px 0px 12px #888888;*/
+    background-color: #ffffff;
+
+    border: 1px solid #b7b8b8;
+    margin: -1px -1px;
+}
+
+.datagridbottom-div{
+    position: relative;
+    margin-bottom: 5px;
+    top:-26px;
+}
+
+.datagridpaging{margin-left:2px;}
+.datagridpaging span span{color:#000; font-weight:bold;}
+.datagridpaging a{color:#333;}
+.datagridpaging a:hover{text-decoration: none; color:#ed008c;}
+.datagridpaging span.nextpage{border-style:solid;border-width:5px;width:0;font-size:0;position:relative;border-color:transparent transparent transparent #ed008c;top:-4px;cursor:pointer;}
+.datagridpaging span.prevpage{border-style:solid;border-width:5px;width:0;font-size:0;position:relative;border-color:transparent #ed008c transparent transparent;top:-4px;cursor:pointer;}
+.nextpage:hover, .prevpage:hover{-moz-opacity:0.5;opacity:0.5;filter:alpha(opacity=50);}
+.datagridpaging input[type='text']{width:25px;height:16px;margin:0px;padding:0px 0px 0px 2px;}
+.datagridpaging input[type='button']{margin:0px;padding:0px;width:20px;border:1px solid #B9B9B9;border-left:0px;border-top-color:#A0A0A0;height:17px;}
+
+.narrowhead{
+    margin-bottom: -23px!important;
+}
+.narrowhead .datagridbody-div-y{
+    top: -22px!important;
+}
+.narrowhead thead th{
+    line-height: 18px!important;
+    padding-top:2px!important;
+}
+.narrowhead .datagridbottom-div{
+    top:-18px!important;
+}
+
+.autoheightrow{}
+.autoheightrow span{
+    white-space:normal;
+    display:inline-block;
+    text-overflow:clip;
+    overflow:hidden;
+    width:100%;
+    word-break:break-all;
+}
+
+/*simplified css*/
+.datagridbody-div-s{
+    position: relative;
+    top: -30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*box-shadow: 0px 0px 12px #888888;*/
+    background-color: #ffffff;
+    border: 0px solid #b7b8b8;
+    border-width: 1px 0px 1px 0px;
+    margin: -1px -1px;
+}
+
+.datagridbody-div-y-s{
+    position: relative;
+    top: -30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*box-shadow: 0px 0px 12px #888888;*/
+    background-color: #ffffff;
+
+    border: 0px solid #b7b8b8;
+    border-width: 1px 0px 1px 0px;
+    margin: -1px -1px;
+}
+
+.datagrid-s {}
+
+.datagrid-s th{
+    background-color: #fff!important;
+    color: #000!important;
+}
+
+.datagrid-s thead .sorting span{ background: #fff url('image/sort_both.png') no-repeat center left; padding-left: 12px; /*width: calc(100% - 9px);*/}
+.datagrid-s thead .sorting_asc span{ background: #fff url('image/sort_asc.png') no-repeat center left; padding-left: 12px; /*width: calc(100% - 9px);*/}
+.datagrid-s thead .sorting_desc span{ background: #fff url('image/sort_desc.png') no-repeat center left; padding-left: 12px; /*width: calc(100% - 9px);*/}
+/*simplified css*/
+
+/*datagrid*/

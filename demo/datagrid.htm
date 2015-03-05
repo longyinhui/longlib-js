@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" href="Include/css/images/favicon.ico">
+    <!--
+    -->
+    <link rel="stylesheet" href="../css/top1.css">
+    <link rel="stylesheet" href="../css/datagrid.3.0.s.css">
+    <script type="text/javascript">
+        window.nonPublic = true;
+    </script>
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/tempdata.js"></script>
+    <script type="text/javascript" src="../resource/datagridDemo.js"></script>
+    <script type="text/javascript" src="../js/menu.js"></script>
+    <script type="text/javascript" src="../js/datagrid.3.0.js"></script>
+    <script type="text/javascript">
+        var objMenu, objGrid;
+        function init(){
+            objMenu = new Menu("nav", menuTriSource);
+            showSection();
+        }
+
+
+    </script>
+    <style type="text/css">
+        .section{
+            padding: 0 10px 10px 10px;
+            text-align: left;
+            width:100%;
+            line-height: 18px;
+            color:#666666;
+            display: none;
+        }
+        .section_show{
+            display: inline-block!important;
+        }
+        .section-title{
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 20px;
+            padding: 15px 5px;
+            text-align: center;
+            color: #222222
+        }
+        .section_1010{
+            border:#E6E5E2 solid 1px;border-width:1px 0 1px 0;
+        }
+        .section_1{
+            border:#E6E5E2 solid 1px
+        }
+        .section_0{
+            background-color:#f8f8f8;
+        }
+        .api-item{
+            font-family: "source-code-pro", Consolas, monospace;
+            font-size: 16px;
+            color: #9F2943;
+            margin: 0px;
+            padding: 10px 0;
+        }
+        .api-title{
+            font-size: 14px;
+            margin: 5px 0 0 0;
+            color: #000000;
+        }
+        .api-sub{
+            padding-left: 8px;
+        }
+        .api-paragraph{}
+        .api-text_code{
+            width:98%;
+            padding-left: 8px;
+            resize: vertical;
+            outline-width: medium;
+            outline-style: none;
+            outline-color: invert;
+            border-color: #E6E5E2;
+            background-color: transparent;
+            font-family: "source-code-pro", Consolas, monospace;
+            font-size: 12px;
+        }
+        .api-code {
+            font-family: "source-code-pro", Consolas, monospace;
+            word-spacing: 0;
+            padding: 0 3px;
+            background-color: rgba(0, 0, 0, .1);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body onload="init()">
+<form>
+    <div class="page">
+        <div class="header">
+            <div class="customer">
+                <div class="customer-left">
+                    <span>Welcome to Long's Library</span>
+                    <a class="a customer-a">My Account</a>
+                    <a class="a customer-a">English</a>
+                </div>
+                <div class="customer-right">
+                    <input>
+                </div>
+            </div>
+            <div class="logo">
+                <span>longslibrary</span>
+                <span class="logo-sub">DEMO</span>
+            </div>
+            <div class="nav-tri"></div>
+            <div id="nav">
+            </div>
+        </div>
+        <div class="content">
+            <!--Create-->
+            <div id="d_create" class="section">
+                <div class="section-title">Create DataGrid</div>
+                <p class="api-item">new DataGrid( id, div, design, source )<p>
+                <p class="api-title"><b>Description</b>: <i>Construct a new Data Grid by instantiating a DataGrid class.</i></p>
+
+                <div class="api-sub">
+                    <p><b>id</b><br>
+                        Type: String<br>
+                        The unique identification of a Data Grid.</p>
+
+                    <p><b>div</b><br>
+                        Type: String<br>
+                        The id attribute of a <span class="api-code">&lt;div&gt;</span> tag, which will be the container of the Data Grid.</p>
+
+                    <p><b>design</b><br>
+                        Type: String or JSON Object<br>
+                        The design of Data Grid, includes Data Grid's attributes, and its columns' definition, events, type, etc. (Please refer to <span class="api-code">var dataGridDesign</span> in Demo part)</p>
+
+                    <p><b>source</b><br>
+                        Type: String or JSON Object<br>
+                        The data source. (Please refer to <span class="api-code">var dataGridSource</span> in Demo part)</p>
+                </div>
+
+                <p class="api-title"><b>Demo</b>:</p>
+                <textarea class="api-text_code" id="ta_create" style="height:280px;">
+                </textarea><br>
+                <div id="dataGridDiv">Here is [dataGridDiv]</div><br>
+                <input type="button" id="bt_create" value="Run" class="button">
+            </div>
+            <script>
+                document.getElementById("ta_create").innerHTML = dg_grid + dg_create;
+                document.getElementById("bt_create").onclick = function () {
+                    eval(document.getElementById("ta_create").value);
+                }
+            </script>
+
+            <!--Get Source-->
+            <div id="d_getsource" class="section">
+                <div class="section-title">Get Source</div>
+                <p class="api-item">.getDataSource() / .getRows()<p>
+                <p class="api-title"><b>Description</b>: <i>Return the current data (JSON String) of the Data Grid.</i></p>
+                <p></p>
+                <p class="api-title"><b>Demo</b>:</p>
+                DataGrid[id: dg2]:
+                <div id="dataGridGetSource"></div><br>
+                <textarea class="api-text_code" id="ta_getSource" style="height:20px;">
+                </textarea><br>
+                <input type="button" id="bt_getSource" value="Run" class="button">
+            </div>
+            <script>
+                eval(dg_grid);
+                var objGrid2 = new DataGrid('dg2', 'dataGridGetSource', dataGridDesign, dataGridSource);
+                document.getElementById("ta_getSource").innerHTML = dg_getSource;
+                document.getElementById("bt_getSource").onclick = function () {
+                    eval(document.getElementById("ta_getSource").value);
+                }
+            </script>
+
+            <!--Reload-->
+            <div id="d_reload" class="section">
+                <div class="section-title">Reload</div>
+                <p class="api-item">.reload( newSource )<p>
+                <p class="api-title"><b>Description</b>: <i>Reload Data Grid.</i></p>
+
+                <div class="api-sub">
+                    <p><b>newSource</b><br>
+                        Type: String or JSON Object<br>
+                        The new data source to be reloaded.
+                    </p>
+                </div>
+
+                <p class="api-title"><b>Demo</b>:</p>
+                DataGrid[id: dg3]:
+                <div id="dataGridReload"></div><br>
+                <textarea class="api-text_code" id="ta_reload" style="height:70px;">
+                </textarea><br>
+                <input type="button" id="bt_reload" value="Run" class="button">
+            </div>
+            <script>
+                var objGrid3 = new DataGrid('dg3', 'dataGridReload', dataGridDesign, dataGridSource);
+                document.getElementById("ta_reload").innerHTML = dg_reload;
+                document.getElementById("bt_reload").onclick = function () {
+                    eval(document.getElementById("ta_reload").value);
+                }
+            </script>
+
+            <!--Add Row-->
+            <div id="d_addRow" class="section">
+                <div class="section-title">Add New Row</div>
+                <p class="api-item">.createNewRow( [position, speed] )<p>
+                <p class="api-title"><b>Description</b>: <i>Add a new row of Data Grid.</i></p>
+
+                <div class="api-sub">
+                    <p><b>position</b> (optional)<br>
+                        Type: Int<br>
+                        The position (row index) of the new row to be added.
+                    </p>
+
+                    <p><b>speed</b> (optional)<br>
+                        Type: Int<br>
+                        The duration time of animation.
+                    </p>
+                </div>
+
+                <p class="api-title"><b>Demo</b>:</p>
+                DataGrid[id: dg4]:
+                <div id="dataGridAddRow"></div><br>
+                <textarea class="api-text_code" id="ta_addRow" style="height:40px;">
+                </textarea><br>
+                <input type="button" id="bt_addRow" value="Run" class="button">
+            </div>
+            <script>
+                var objGrid4 = new DataGrid('dg4', 'dataGridAddRow', dataGridDesign, dataGridSource);
+                document.getElementById("ta_addRow").innerHTML = dg_addRow;
+                document.getElementById("bt_addRow").onclick = function(){
+                    eval(document.getElementById("ta_addRow").value);
+                }
+            </script>
+
+            <!--Delete Row-->
+            <div id="d_deleteRow" class="section">
+                <div class="section-title">Delete Row(s)</div>
+                <p class="api-item">.deleteRow( rowIndex, [speed] )<p>
+                <p class="api-title"><b>Description</b>: <i>Delete a row of Data Grid.</i></p>
+
+                <div class="api-sub">
+                    <p><b>rowIndex</b><br>
+                        Type: Int<br>
+                        The row index of the row to be deleted.
+                    </p>
+
+                    <p><b>speed</b> (optional)<br>
+                        Type: Int<br>
+                        The duration time of animation.
+                    </p>
+                </div>
+
+                <p class="api-item">.deleteRows( rowIndexes, [speed] )<p>
+                <p class="api-title"><b>Description</b>: <i>Delete rows of Data Grid by indexes.</i></p>
+
+                <div class="api-sub">
+                    <p><b>rowIndexes</b><br>
+                        Type: Array of Int<br>
+                        The row indexes of the rows to be deleted.
+                    </p>
+
+                    <p><b>speed</b> (optional)<br>
+                        Type: Int<br>
+                        The duration time of animation.
+                    </p>
+                </div>
+
+                <p class="api-title"><b>Demo</b>:</p>
+                DataGrid[id: dg5]:
+                <div id="dataGridDeleteRow"></div><br>
+                <textarea class="api-text_code" id="ta_deleteRow" style="height:40px;">
+                </textarea><br>
+                <input type="button" id="bt_deleteRow" value="Run" class="button">
+                <br>
+                <textarea class="api-text_code" id="ta_deleteRows" style="height:40px;">
+                </textarea><br>
+                <input type="button" id="bt_deleteRows" value="Run" class="button">
+            </div>
+            <script>
+                var dataGridSourceM = [
+                    { name: 'Row1', address: 'a1', check: true},
+                    { name: 'Row2', address: 'a2'},
+                    { name: 'Row3', address: 'a1', check: true},
+                    { name: 'Row4', address: 'a2'},
+                    { name: 'Row5', address: 'a1', check: true},
+                    { name: 'Row6', address: 'a2'}
+                ];
+
+                var objGrid5 = new DataGrid('dg5', 'dataGridDeleteRow', dataGridDesign, dataGridSourceM);
+                document.getElementById("ta_deleteRow").innerHTML = dg_deleteRow;
+                document.getElementById("bt_deleteRow").onclick = function(){
+                    eval(document.getElementById("ta_deleteRow").value);
+                }
+
+                document.getElementById("ta_deleteRows").innerHTML = dg_deleteRows;
+                document.getElementById("bt_deleteRows").onclick = function(){
+                    eval(document.getElementById("ta_deleteRows").value);
+                }
+            </script>
+        </div>
+    </div>
+</form>
+</body>
+</html>

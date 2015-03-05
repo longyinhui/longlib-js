@@ -1,0 +1,25 @@
+/*public*/
+input[type='submit'],
+input[type='button'] {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+/*public*/
+
+
+/*datagrid
+.datagridhead-div,
+.datagridhead-div-y{
+    top: 2px!important;
+}*/
+/*datagrid*/
+
+/*title*/
+.pTitle {
+    margin: -1px -1px 0 -11px!important;
+}
+
+.pTitleTriangle{
+    margin: 0 0 2px -11px!important;
+}
+/*title*/
