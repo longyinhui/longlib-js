@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/datagrid.3.0.js"></script>
+    <script type="text/javascript" src="../js/tab.js"></script>
+    <script type="text/javascript" src="../js/tempdata.js"></script>
+    <script type="text/javascript" src="../js/bar.js"></script>
+    <link rel="stylesheet" href="../css/datagrid.3.0.s.css">
+    <script type="text/javascript">
+        var objGrid, messageDialog, messageBar;
+
+        function init(){
+            //new Tab("t001", "maintab");
+            //messageBar = new Bar();
+        }
+
+        function testClick(){
+            //$("#temptime").datepicker({fulldayvalue: "YYyy-MM-DD"}/*{lang:"cn"}*/);
+            messageBar.setContent("123");
+            messageBar.show();
+        }
+
+        //-------------------------
+        function newGrid() {
+            //var d1 = new Date();
+            //objGrid = new DataGrid("DG001", "DataGridTest", dataGridDesign, dataGridSource);
+            //var d2 = new Date();
+            //alert("Load time(ms): " + (d2 - d1));
+            //document.getElementById("loadtime").innerHTML = "Load time(ms): " + (d2 - d1);
+        }
+
+        function getSource() {
+            var a = objGrid.getDataSource();
+            a = a.replace(/},/g, "},<br>");
+            document.getElementById("shown").innerHTML = a;
+        }
+
+        function save(){
+        }
+
+        function reloadDialog(){
+            var t = '[{"name": "Longyh", "description": "Long Yinhui"}]';
+            if(!document.getElementById("reload_source")){
+                var h = "<div style='margin:5px auto'><table style='margin:auto'><tr><td>New source&nbsp;</td><td><textarea id='reload_source' style='width:400px'></textarea></td></tr></table><input type='button' onclick='reload()' value='Reload'></div>";
+                messageBar.setContent(h);
+                document.getElementById("reload_source").value = t;
+            }
+            messageBar.show();
+            //document.getElementById("reload_source").value = t;
+        }
+        function reload(){
+            var sourceInput = document.getElementById("reload_source");
+            if(sourceInput && sourceInput.value)
+                objGrid.reload(sourceInput.value);
+        }
+
+        function addRow(){
+            objGrid.createNewRow();
+        }
+
+        function addRowOnDialog(){
+            if(!document.getElementById("addrowon_pos")){
+                var h = "<div style='margin:5px auto'>New row position&nbsp;<input id='addrowon_pos' type='input' value='3'><input type='button' onclick='addRowOn()' value='Add Row'></div>";
+                messageBar.setContent(h);
+            }
+            messageBar.show();
+        }
+        function addRowOn(){
+            var positionInput = document.getElementById("addrowon_pos");
+            if(positionInput && positionInput.value)
+                objGrid.createNewRow(positionInput.value);
+        }
+
+        function deleteFocusedRow(){
+            objGrid.deleteRow(objGrid.getFocusedRow(), 500);
+        }
+
+        function deleteRowsDialog(){
+            if(!document.getElementById("deleterow_pos")){
+                var h = "<div style='margin:5px auto'>Row index(es) to delete (split by ',' if necessary)&nbsp;<input id='deleterow_pos' type='input' value='1'><input type='button' onclick='deleteRows()' value='Delete Row'></div>";
+                messageBar.setContent(h);
+            }
+            messageBar.show();
+        }
+        function deleteRows(indexes){
+            var indexInput = document.getElementById("deleterow_pos");
+            if(indexInput && indexInput.value)
+                objGrid.deleteRows(indexInput.value, 500);
+        }
+
+        function DeleteSomeRows(){
+            var r = objGrid._findRows("HEIGHT", 350);
+            objGrid.deleteRows(r);
+            //objGrid.deleteRowsByWhere("[WIDTH]==750 && [HEIGHT]==350", 500);
+        }
+
+        function setValueDialog(){
+            if(!document.getElementById("setcellvalue_row")){
+                var h = "<div style='margin:5px auto'>Row index&nbsp;<input id='setcellvalue_row' type='input'>&nbsp;&nbsp;"
+                        + "Column Name or index&nbsp;<input id='setcellvalue_col' type='input'>&nbsp;&nbsp;"
+                        + "Value&nbsp;<input id='setcellvalue_val' type='input'>&nbsp;&nbsp;"
+                        + "<input type='button' onclick='setValue()' value='Set value'></div>";
+                messageBar.setContent(h);
+            }
+            messageBar.show();
+        }
+        function setValue(){
+            var row = document.getElementById("setcellvalue_row"), col = document.getElementById("setcellvalue_col"), val = document.getElementById("setcellvalue_val");
+            if(row && row.value && col && col.value && val && val.value)
+                objGrid.setCellValue(row.value, col.value, val.value);
+        }
+
+        function OnAfterNewRowGrid(tr){
+            var a = tr;
+        }
+
+        function OnSelect(row){
+            //alert(row);
+        }
+
+
+
+        function focus31(){
+            objGrid.focusCell(3,1);
+        }
+
+        function set1(){
+            var a = objGrid.setCellsValueByWhere("[WIDTH]==750", "WIDTH", 850);
+        }
+
+        function filter(){
+            var d1 = new Date()
+            var a = objGrid.filterRows("WIDTH", 750);
+            var d2 = new Date();alert(d2-d1);
+        }
+
+        function filter2(){
+            var d1 = new Date()
+            var a = objGrid.filterRows("HEIGHT", 350);
+            var d2 = new Date();alert(d2-d1);
+        }
+
+        function clearRows(){
+            objGrid.clearAllRows();
+        }
+
+        function moveUp(i){
+            //objGrid.moveRowUp(i, 250);
+            objGrid.moveRowTo(i, 1);
+        }
+
+        function moveDown(i){
+            //objGrid.moveRowDown(i);
+            objGrid.moveRow(i, 1);
+        }
+
+        function getCurrent(){
+            d1 = new Date();
+            var a = objGrid.getFocusedRowIndex();
+            d2 = new Date();
+            if(a) alert(a + "," +(d2-d1));
+        }
+
+        function validateSS(row, value){
+            if(value == "NO"){
+                alert("NO");
+                return false;
+            }
+            else return true;
+        }
+
+        function checkDup(){
+            var a = objGrid.findDuplicateRow("DATAGRIDID|FORM");
+            if(a) alert(a);
+        }
+
+
+
+        function go(){
+            window.location.href = "test_s.htm";
+        }
+    </script>
+    <style>
+        .reports{text-align:center;margin:5px;padding-bottom:5px;}
+        .reports input[type='button']{background-color:#000;color:#fff;min-width:250px;height:70px;padding:10px;margin:5px;font-weight:normal;font-size:17px;transition:color 0.2s ease-in-out;}
+        .reports input[type='button']:hover{color: #f38fb3;}
+    </style>
+</head>
+<body onload="init()">
+<div class="pContainer" style="width: 1000px;">
+    <!--<div class="pTitle">
+        <span>Data Grid Design</span>
+    </div>
+    <div class="pTitleTriangle"></div>-->
+    <input type="button" value="Test" onclick="testClick()"/>
+    <div type="tab" id="maintab">
+        <div id="tab1" caption="Create & Save">
+            <label id="loadtime" style="border-right:1px solid #cccccc; padding-right:5px;"></label>
+            <input type="button" value="Create" title="Create a new DataGrid" onclick="newGrid()"/>
+            <input type="button" value="Get Source" title="Get source data of DataGrid (JSON)" onclick="getSource()"/>
+            <input type="button" value="Save" title="Save" onclick="save()" />
+        </div>
+        <div id="tab2" caption="C.R.U.D.">
+            <input type="button" value="Reload..." onclick="reloadDialog()"/>
+            <input type="button" value="Add Row" title="Add a new row in the bottom of DataGrid" onclick="addRow()"/>
+            <input type="button" value="Add Row On..." onclick="addRowOnDialog()"/>
+            <input type="button" value="Delete Row" title="Delete focused row" onclick="deleteFocusedRow()"/>
+            <input type="button" value="Delete Rows..." onclick="deleteRowsDialog()"/>
+            <input type="button" value="Set Cell Value..." onclick="setValueDialog()"/>
+        </div>
+        <div id="tab3" caption="Control">
+            <input type="button" value="Filter..." onclick="filter()"/>
+            <input type="button" value="Clear" title="Clear all rows" onclick="clearRows()"/>
+            <input type="button" value="Sort" title="Sort all rows by a certain column" onclick="checkDup()"/>
+            <input type="button" value="Get Duplicate..." onclick="checkDup()"/>
+            <input type="button" value="Get Focused Row" title="Get focused row" onclick="getCurrent()"/>
+            <input type="button" value="Focus Cell..." onclick="focus31()"/>
+        </div>
+        <div id="tab4" caption="Other operations">
+            <input type="button" value="About DataGrid" title="Information about DataGrid" onclick="about()"/>
+        </div>
+    </div>
+    <div type="datagrid" id="DataGridTest" class=""></div>
+    <br>
+    <div id="shown" style="width:2000px;"></div>
+    <!--<input type="text" id="temptime" name='EXPIREDDATE' />-->
+    <script>
+        alert("start");
+        var ds = new Date();
+    </script>
+    <script>
+        var d1 = new Date();
+        objGrid = new DataGrid("DG001", "DataGridTest", dataGridDesign, dataGridSource);
+        var d2 = new Date();
+    </script>
+    <script>
+        var df = new Date();
+        alert("finish");
+        alert("Load time(ms): " + (d2 - d1) + "; Render time(ms)" + (df - ds));
+    </script>
+</div>
+</form>
+</body>
+</html>

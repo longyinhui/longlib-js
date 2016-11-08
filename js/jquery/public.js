@@ -106,7 +106,7 @@ window.getRootPath = function () {
     var prePath = strFullPath.substring(0, pos);
     var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);
     if (postPath.length > 0)
-        if (["/css", "/js", "/report", "/security", "/service", "/system", "/resource"].indexOf(postPath.toLowerCase()) >= 0) postPath = "";
+        if (["/css", "/js", "/report", "/security", "/service", "/system", "/resource","/pilot"].indexOf(postPath.toLowerCase()) >= 0) postPath = "";
     return (prePath + postPath);
 };
 

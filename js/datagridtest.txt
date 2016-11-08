@@ -29,23 +29,62 @@ dataGridRowsTemplate = [
     { name: 'grma', description: 'Lawrence', status: 'OKG', age: 200, date: '1949-10-01', address: 'baiyun', address1: 'tianhe', link: 'http://t.cn', link1: 'http://qq.com' }
 ]
 dataGridRows.length = 9000
+Page: datagridPerformance.htm
 
 Test Result:
-        2.0Load    2.0Render    3.0Load    3.0Render
-        -------------------------------------------------
-1.22    1146        10203       1287        4948(3.0β with tr(with :even) class, and span inside td - 5000±200)
+Date    2.0Load     2.0Render   3.0Load     3.0Render
+-----------------------------------------------------------
+(chrome 38)
+
+15.1.22
+        1146        10203       1287        4948(3.0β with tr(with :even) class, and span inside td - 5000±200)
         1184        10241       1245        5197
         1037        9801        1209        4783
         1218        9848
         1108        10043
-1.24    1136        10079       1172        3827(3.0β with tr class, remove span in td - 3800±100)
+15.1.24
+        1136        10079       1172        3827(3.0β with tr class, remove span in td - 3800±100)
                                 1216        3884
-1.25                            1131        3367(3.0β without tr class, remove span in th - 3300±200)
+15.1.25
+                                1131        3367(3.0β without tr class, remove span in th - 3300±200)
                                 1245        3397
 
-(update chrome from 38 to 40 [slower in javascript while faster in css??])
-2.7     3978        17566       3390        3406(3.0β without s class)
+(chrome 40 [slower in javascript while faster in css?])
+15.2.7
+        3978        17566       3390        3406(3.0β without s class, which is for animation css, not included in 2.0)
         3517        13483       3320        3331
         3479        14172       3215        3229
         3602        14331       3478        3491(3.0β with s class)
         3028        13258       3035        3045
+
+(chrome 42)
+15.8.22
+        1529        5586        1508        3953(3.0β without s class)
+        1487        5816        1387        3781
+        1396        5403        1473        3744
+                                1508        5991(3.0β with s class)
+                                1525        5909
+
+(ie 11)
+15.8.22
+        57835       57836       8789        8790(3.0β without s class)
+        57594       57594       9013        9014
+                                48132       48133(3.0β with s class)
+                                48692       48725
+
+(firefox 33)
+15.8.22
+        26078       26090       25573       25575(3.0β without s class)
+        25446       25460       25732       25744
+                                28847       28859(3.0β with s class)
+                                25728       25738
+
+(chrome 53)
+16.11.5
+        1511        5618        1472        4131(3.0β without s class)
+        1668        5842        1473        4153
+        1657        5780        1417        4095
+        1528        5605        1466        6455(3.0β with s class)
+                                1465        6379
+                                1482        6354
+							

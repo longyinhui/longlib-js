@@ -1,7 +1,8 @@
 (function (window, document, undefined) {
     var Bar = function(option){
         if(option){
-            if(option.height) this.height = option.height;
+            if (option.height) this.height = option.height;
+            if (option.hiddenHeight) this.hiddenHeight = option.hiddenHeight;
             if(option.position) this.position = option.position;
             if(option.holdTime) this.timer = option.holdTime;
         }
@@ -13,6 +14,7 @@
         $:null,
         position: null,
         height: 40,
+        hiddenHeight: 0,
         holdTime: 3000,
 
         _timer: null,
@@ -28,6 +30,7 @@
 
             main.bind("mouseover", function(e){
                 b._stopHide();
+                b.show();
             });
             main.bind("mouseout", function(e){
                 b._startHide();
@@ -66,7 +69,7 @@
             if(typeof(content) === "string")
                 this.$.innerHTML = content;
             else this.$.appendChild(content);
-            this.$.style.top = (0 -this.$.clientHeight) + "px";
+            this.$.style.top = (this.hiddenHeight - this.$.clientHeight) + "px";
         },
 
         setHead: function(head){

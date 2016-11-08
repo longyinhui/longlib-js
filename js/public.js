@@ -31,7 +31,7 @@ window.getRootPath = function () {
     var prePath = strFullPath.substring(0, pos);
     var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);
     if (postPath.length > 0)
-        if (["/report", "/security", "/service", "/system", "/resource", "/template","/demo"].indexOf(postPath.toLowerCase()) >= 0) postPath = "";
+        if (["/report", "/security", "/service", "/system", "/resource", "/template","/demo", "/pilot"].indexOf(postPath.toLowerCase()) >= 0) postPath = "";
     return (prePath + postPath);
 };
 
@@ -50,11 +50,11 @@ window.getBrowser = function () {//multi-browser support
 };
 
 window.loadStyleSheet = function () {
-    if (window.nonPublic) return;
-    var root = getRootPath();
-    document.writeln('<link rel="Stylesheet" href="' + root + '/css/public.css" />');
+    //document.writeln('<link rel="Stylesheet" href="' + root + '/css/public.css" />');
     if (document.browser == "msie")
-        document.writeln('<link rel="Stylesheet" href="' + root + '/css/' + (parseInt(document.browserVersion) < 9 ? 'public_sp_ieu8.css' : 'public_sp_ie.css') + '" />');
+        document.writeln('<link rel="Stylesheet" href="' + getRootPath() + '/css/' + (parseInt(document.browserVersion) < 9 ? 'public_sp_ieu8.css' : 'public_sp_ie.css') + '" />');
+    else if (document.browser == "firefox")
+        document.writeln('<link rel="Stylesheet" href="' + getRootPath() + '/css/public_sp_ff.css" />');
 };
 
 window.alertCss = function (cssName, selector_str, attr_str, value_str) {

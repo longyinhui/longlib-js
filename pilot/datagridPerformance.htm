@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <!--<link rel="stylesheet" href="../css/datagrid.3.0.s.css">-->
+
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/tempdata.js"></script>
+    <script type="text/javascript" src="../js/datagrid.2.0.js"></script>
+    <script type="text/javascript">
+        var objMenu, objGrid;
+        function init(){
+            //objMenu = new Menu("nav", menuTriSource);
+        }
+
+        function add(){
+            objGrid.createNewRow(document.getElementById("idx").value, 500);
+        }
+
+        function deleter(){
+            objGrid.deleteRow(document.getElementById("idx").value, 500);
+        }
+    </script>
+
+</head>
+<body onload="init()">
+    <form>
+    <div id="DataGridTest"></div>
+        <!--<input id="idx" type="text">
+        <input type="button" value="add" onclick="add()">
+        <input type="button" value="delete" onclick="deleter()">-->
+    <script>
+        //alert("start");
+        var ds = new Date();
+    </script>
+    <script>
+        var d1 = new Date();
+        objGrid = new DataGrid("DG001", "DataGridTest", dataGridDesign, dataGridSource);
+        var d2 = new Date();
+    </script>
+    <script>
+        var df = new Date();
+        //alert("finish");
+        alert("Load time(ms): " + (d2 - d1) + "; Render time(ms)" + (df - ds));
+    </script>
+    </form>
+</body>
+</html>

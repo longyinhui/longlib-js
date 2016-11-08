@@ -90,7 +90,7 @@
     outline-style:none;
     outline-color:invert;
     /*box-shadow: 0px 0px 5px #ff5fbd;*/
-    padding-left: 4px;
+    padding: 0px 0px 2px 4px;/*need to fix padding for different browsers and even versions*/
     font-family: 'Segoe UI', Helvetica, Verdana, sans-serif;
     font-size: 12px;
     transition: border-color ease-in .2s, background-color ease-in .2s;
@@ -152,10 +152,9 @@
     box-sizing: border-box;
     border: 1px solid transparent;
     background-color: transparent;
-
     outline: none;
     /*border: #ff5fbd solid 1px;*/
-    padding: 0px;
+    padding: 0px 0px 2px 0px;/*need to fix padding for different browsers and even versions*/
     z-index: 3;
     font-family: 'Segoe UI', Helvetica, Verdana, sans-serif;
     font-size:12px;
