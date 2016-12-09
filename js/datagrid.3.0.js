@@ -1935,8 +1935,8 @@ Important Update Log
         adjPageLinkCount: 5
     },
     _ext_variables_simplifiedCss = {
-        bodyDivClass: "datagridbody-div-s", bodyDivScrollClass: "datagridbody-div-y-s",
-        dataGridClass: "datagrid-s datagrid", headDataGridClass: "datagrid-s datagrid datagrid-head"
+        bodyDivClass: "dgbody-div-s", bodyDivScrollClass: "dgbody-div-y-s",
+        dataGridClass: "dg-s dg", headDataGridClass: "dg-s dg dg-head"
     },
     hashTableCache = {},
     _inputCellTypes = ["text", "date", "datetime-local", "time", "number", "email", "tel", "url", "select", "textarea"],

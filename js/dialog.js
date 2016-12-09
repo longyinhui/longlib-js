@@ -1,7 +1,8 @@
 (function (window, document, undefined) {
     var Dialog = function(content,option){
         if(option){
-            this.mask = option.mask;if(this.mask == undefined) this.mask = true;
+            this.mask = option.mask; if (this.mask == undefined) this.mask = true;
+            this.outMask = option.outMask; if (this.outMask == undefined) this.outMask = true;
             if(option.buttons) this.buttons = option.buttons;
             if(option.head) this.head = option.head;
             this.title = option.title ? option.title : "";
@@ -15,7 +16,7 @@
             this.maskOpacity = option.maskOpacity ? option.maskOpacity:0.5;
             if(option.scope){
                 this.scope = option.scope;
-                $("<link rel='stylesheet' type='text/css' href='" + window.getRootPath() + "/css/dialog.css' >").appendTo(option.scope);
+                if (!option.sameScope) $("<link rel='stylesheet' type='text/css' href='" + window.getRootPath() + "/css/dialog.css' >").appendTo(option.scope);
                 //this.mask = false;
             }
             else this.scope = $(document.body);
@@ -47,11 +48,17 @@
         onShow: null,
         scope:null,
         init:function(){
-            var b=$(document.body), dialog=this, outMain, main, mask, head, content, buttons;
+            var /*b=$(document.body), */dialog=this, outMain, main, mask, head, content, buttons;
 
             //mask
             if(this.mask){
-                mask=$("<div class='dialog-mask'>&nbsp;</div>").appendTo(this.scope);//.show();
+                mask = $("<div class='dialog-mask'>&nbsp;</div>")
+                    .appendTo(this.scope)
+                    .click(function (e) {
+                        if (Dialog.clickMaskToHide && e.target.className == 'dialog-mask show') {
+                            dialog.hide();
+                        }
+                    });//.show();
                 Dialog.$mask = mask;
             }
 
@@ -81,7 +88,7 @@
             this.$content = content;
 
             //buttons
-            if(this.buttons){
+            if (this.buttons && this.buttons.length > 0) {
                 buttons = $("<div class='dialog-buttons'></div>").appendTo(main);
                 var button;
                 for(var i=0;i<this.buttons.length;i++){
@@ -92,36 +99,92 @@
                 }
             }
 
-            //if(mask) mask.addClass("dialog-show");//mask.css({opacity: this.maskOpacity});
-            //outMain.addClass("dialog-show");
+            //if(mask) mask.addClass("show");//mask.css({opacity: this.maskOpacity});
+            //outMain.addClass("show");
         },
         /*
-        close:function(){
-            var speed = this.speed
-            var dialog = this;
-            if(this.$mask)
-                this.$mask.fadeOut(speed,function(){
-                    $(this).remove();
-                    dialog.$mask = null;
-                    $(document.body).removeClass("dialog-mask-body");
-                });
-            if(this.$)
-                this.$.fadeOut(speed,function(){
-                    $(this).remove();
-                    dialog.$ = null;
-                });
-        },*/
+         close:function(){
+         var speed = this.speed
+         var dialog = this;
+         if(this.$mask)
+         this.$mask.fadeOut(speed,function(){
+         $(this).remove();
+         dialog.$mask = null;
+         $(document.body).removeClass("dialog-mask-body");
+         });
+         if(this.$)
+         this.$.fadeOut(speed,function(){
+         $(this).remove();
+         dialog.$ = null;
+         });
+         },*/
 
-        hide:function(){
-            if(Dialog.$mask) Dialog.$mask.removeClass("dialog-show");
-            if(this.$) this.$.removeClass("dialog-show");
-            if(this.onHide) this.onHide();
+        show: function () {
+            if (Dialog.$mask) Dialog.$mask.addClass("show");
+            if (window.top && !window.nonPublic && this.outMask) {
+                if (!Dialog.$outMask) {
+                    var f = window.top.document.forms[0], h = 0;
+                    if (f) h = f.clientHeight;
+                    Dialog.$outMask = $("<div id='tempOutMask' style='position:fixed;opacity:0;width:100%;height:" +
+                        h + "px;top:0px;left:0px;background-color:#888;opacity:0.5;transition: all 0.3s;'></div>"
+                    )
+                        .appendTo($(window.top.document.body));
+                }
+                Dialog.$outMask.css({ visibility: "visible", opacity: 0.5 });
+            }
+
+            if (this.$) this.$.addClass("show");
+            if (this.onShow) this.onShow();
+            Dialog.currentDialog = this;
         },
 
-        show: function(){
-            if(Dialog.$mask) Dialog.$mask.addClass("dialog-show");
-            if(this.$) this.$.addClass("dialog-show");
-            if(this.onShow) this.onShow();
+        hide:function(){
+            if (Dialog.$mask) Dialog.$mask.removeClass("show");
+            if (window.top) {
+                if (Dialog.$outMask) {
+                    Dialog.$outMask.css("opacity", 0);
+                    setTimeout("Dialog.$outMask.css('visibility', 'hidden');", 300);
+                }
+            }
+
+            if(this.$) this.$.removeClass("show");
+            if(this.onHide) this.onHide();
+            Dialog.currentDialog = null;
+        },
+
+        showLoad: function () {
+            //Hide the Dialog before show "Loading"
+            if (this.$) {
+                this.$.removeClass("show");
+                if (this.onHide) this.onHide();
+                Dialog.currentDialog = null;
+            }
+
+            if (Dialog.$mask) Dialog.$mask.addClass("show");
+            Dialog.clickMaskToHide = false;
+            if (window.top) {
+                if (Dialog.$outMask) {
+                    Dialog.$outMask.css("opacity", 0);
+                    setTimeout("Dialog.$outMask.css('visibility', 'hidden');", 300);
+                }
+            }
+
+            if (Dialog.$load)
+                Dialog.$load.css("display", "inline");
+            else
+                Dialog.$load = $("<div class='dialog-load'><img src='" + window.getRootPath() + "/Include/css/images/report_loader.gif' style='border:0px' /></div>").appendTo(this.scope);
+        },
+
+        hideLoad: function () {
+            if (Dialog.$load) Dialog.$load.css("display", "none");
+            if (Dialog.$mask) Dialog.$mask.removeClass("show");
+            Dialog.clickMaskToHide = true;
+            if (window.top) {
+                if (Dialog.$outMask) {
+                    Dialog.$outMask.css("opacity", 0);
+                    setTimeout("Dialog.$outMask.css('visibility', 'hidden');", 300);
+                }
+            }
         },
 
         setContent: function(content){
@@ -141,6 +204,11 @@
         }
     }
 
+    Dialog.dialogArguments;
+    Dialog.returnValue;
+    Dialog.currentDialog;
+    Dialog.clickMaskToHide = true;
+
     window.Dialog = Dialog;
     //document.writeln('<link rel="Stylesheet" href="' + window.getRootPath() + '/Include/css/dialog.css" />');
     var cssLink = document.createElement("link"), head = document.head?document.head:document.getElementsByTagName("head")[0];
@@ -149,4 +217,4 @@
     cssLink.href = window.getRootPath() + "/css/dialog.css";
     head.appendChild(cssLink);
 
-})(window, window.top?window.top.document:document);
+})(window, document);

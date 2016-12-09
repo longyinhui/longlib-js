@@ -296,7 +296,7 @@
 }*/
 
 /*simplified css*/
-.datagridbody-div-s{
+.dgbody-div-s{
     position: relative;
     top: -30px;
     overflow-y: auto;
@@ -308,7 +308,7 @@
     margin: -1px -1px;
 }
 
-.datagridbody-div-y-s{
+.dgbody-div-y-s{
     position: relative;
     top: -30px;
     overflow-y: scroll;
@@ -322,16 +322,16 @@
 }
 
 /*
-.datagrid-s {}
+.dg-s {}
 
-.datagrid-s th{
+.dg-s th{
     background-color: #fff!important;
     color: #000!important;
 }
 
-.datagrid-s thead .sorting span{ background: #fff url('image/sort_both.png') no-repeat center left; padding-left: 12px; }
-.datagrid-s thead .sorting_asc span{ background: #fff url('image/sort_asc.png') no-repeat center left; padding-left: 12px; }
-.datagrid-s thead .sorting_desc span{ background: #fff url('image/sort_desc.png') no-repeat center left; padding-left: 12px; }
+.dg-s thead .sorting span{ background: #fff url('image/sort_both.png') no-repeat center left; padding-left: 12px; }
+.dg-s thead .sorting_asc span{ background: #fff url('image/sort_asc.png') no-repeat center left; padding-left: 12px; }
+.dg-s thead .sorting_desc span{ background: #fff url('image/sort_desc.png') no-repeat center left; padding-left: 12px; }
 */
 /*simplified css*/
 

@@ -1,0 +1,164 @@
+/*Dialog*/
+.dialog1{
+    position: absolute;
+    z-index: 101;
+    box-shadow: 2px 2px 12px #888888;
+    background-color: #ffffff;
+}
+
+.dialog{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: auto;
+    z-index: 101;
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    -webkit-transform: translateX(-50%) translateY(-70%);
+    -moz-transform: translateX(-50%) translateY(-70%);
+    -ms-transform: translateX(-50%) translateY(-70%);
+    transform: translateX(-50%) translateY(-70%);
+    /*-webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;*/
+    visibility: hidden;
+}
+
+/*Effect*/
+.dialog-frame{
+    position: relative;
+    border-radius: 3px;
+    margin: 0 auto;
+}
+
+.dialog-effect .dialog-frame{
+    -webkit-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    box-shadow: 2px 2px 12px #888888;
+    background-color: #ffffff;
+
+}
+
+.show{visibility: visible;}
+
+.show.dialog-effect .dialog-frame{
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.dialog-mask{
+    position: fixed;
+    width:100%;
+    height:100%;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    background-color: #888;
+    opacity: 0;
+    transition: all 0.3s;
+    visibility: hidden;
+}
+
+.show.dialog-mask{
+    opacity: 0.5;
+    visibility: visible;
+}
+
+.dialog-head{
+    padding: 0.1em;
+    font-size: 1.6em;
+    font-weight: 300;
+    line-height: 54px;
+    margin-left:30px;
+}
+
+.dialog-nohead{
+    padding: 0.1em;
+}
+
+.dialog-head-close{
+    font-size: 1.6em;
+    font-weight: 100;
+    width:30px;
+    position: relative;
+    top: 3px;
+    float: right;
+    cursor: pointer;
+    color:#333;
+    text-align: center;
+}
+
+.dialog-head-close:hover{
+    color:#ea2c90;
+    /*color: #ddd;
+    background-color: #ea2c90;*/
+}
+
+.dialog-content{
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 3px 30px 8px 30px;
+    margin: 0;
+    min-height: 70px;
+    font-weight: 300;
+    font-size: 1em;
+}
+
+.dialog-buttons{
+    text-align: center;
+    padding-bottom: 12px;
+}
+
+.dialog-button {
+    opacity: 0.9;
+    height: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 1px 8px;
+    border: 0px;
+    margin-left:5px;
+    background-color: rgb(209,209,209);
+    outline-style:none;
+    outline-color:invert;
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -webkit-transition: background-color 0.2s ease-in-out;
+    -moz-transition: background-color 0.2s ease-in-out;
+    -o-transition: background-color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+    text-shadow: 0 0px 0 #ffffff;
+}
+
+.dialog-button:hover {
+    background-color: rgb(230,230,230);
+}
+
+.pButton{
+    background-color: rgb(220,84,154);
+    color: #fff;
+    font-weight: normal;
+}
+
+.pButton:hover{
+    background-color: rgb(211,41,129);
+}
+
+.dialog-load{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-70%);
+    -moz-transform: translateX(-50%) translateY(-70%);
+    -ms-transform: translateX(-50%) translateY(-70%);
+    transform: translateX(-50%) translateY(-70%);
+}
+/*Dialog*/

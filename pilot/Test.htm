@@ -4,12 +4,31 @@
 <head>
     <title></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <script type="text/javascript" src="../js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery/public.js"></script>
-    <script type="text/javascript" src="../js/datepicker.js"></script>
+    <!--<script type="text/javascript" src="../js/jquery/jquery.min.js"></script>-->
+    <script type="text/javascript" src="../js/public.js"></script>
+    <script type="text/javascript" src="../js/datepicker.2.0.js"></script>
+    <style type="text/css">
+        .d{
+            width:200px;
+            position: relative;
+            transition: all ease-in-out .4s;
+            left:0px;
+        }
+        .d1{
+            left:100px;
+        }
+    </style>
     <script type="text/javascript">
-        function init(){}
-        function CompareStringJoin(){
+        var a;
+        function init(){
+            var aa;
+            a = new DatePicker("d1", idx);
+        }
+
+        function fn_c(){
+        }
+
+        function compareStringJoin(){
             var t = 100000, i, tempstr="qwertyuiopasdfghjklzxcvbnm1234567890<>@#$";
             var ar = [], str1 = "", str2="";
             var d1,d2,d3;
@@ -25,12 +44,44 @@
             d3 = new Date();
             alert("length1:" + str1.length + ", Time1:"+ (d2-d1) + "\nlength2:" + str2.length + ", Time2:"+ (d3-d2));
         }
+
+        function dateAssignment(){
+            var d1 = new Date(2000,1,1);
+            var dt1,dt2,dt3;
+            var i, t = 100000;
+            var d2 = new Date();
+            for (i=0; i < t; i++){
+                dt1 = new Date(d1.toString());
+            }
+            var d3 = new Date();
+            for (i=0; i < t; i++){
+                dt2 = new Date(d1);
+            }
+            var d4 = new Date();
+            for (i=0; i < t; i++){
+                dt3 = new Date(d1.getFullYear(), d1.getMonth(), d1.getDate());
+            }
+            var d5 = new Date();
+            alert(dt1.toString() + "\n" + dt2.toString() + "\n" + dt3.toString());
+            alert("time string:" + (d3-d2) + "\ntime object:" + (d4-d3) + "\ntime YMD:" + (d5-d4));
+        }
+
+        function monthDates(){
+            var d1 = new Date();
+            var firstDate = new Date(d1.getFullYear(), d1.getMonth(), 1);
+            var diffDay = 0 - firstDate.getDay();
+            if (diffDay > 0) diffDay -= 7;
+            var startDate = (new Date(firstDate)).setDate(firstDate.getDate() + diffDay);
+            var endDate = (new Date(startDate)).setDate(startDate.getDate() + 42);
+            alert(startDate + "\n" + endDate);
+        }
     </script>
 
 </head>
 <body onload="init()">
 <form>
     <input id="idx" type="text" datepicker="1">
+    <!--<input type="button" onclick="fn_c()" value="click">-->
 </form>
 </body>
 </html>
